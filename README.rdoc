@@ -1,0 +1,16 @@
+
+== NCSA Parser ==
+
+Here's a quick little library for reading NCSA-style web server logs. Quick
+usage:
+
+  NCSAParser::Parser.new(File.open('/var/log/httpd/access_log'), %w{
+    host ident username datetime request
+    status bytes referer ua
+    outstream instream ratio
+  }).each { |b|
+    puts b.inspect
+  }
+
+  ...
+

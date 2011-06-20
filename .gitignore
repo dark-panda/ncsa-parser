@@ -1,0 +1,11 @@
+*.orig
+.*.swp
+.*.swo
+*.tmp
+*.patch
+*.kpf
+*~
+.DS_Store
+Thumbs.db
+/doc
+/pkg
