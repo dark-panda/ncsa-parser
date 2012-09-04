@@ -8,21 +8,22 @@ module NCSAParser
 
       :request_uri => proc { |match, options|
         begin
-          URI.parse("http://#{options[:domain]}#{match[:request_path]}")
+          request = match[:request].scan(/^"[A-Z]+ (.+) HTTP\/\d+\.\d+"$/).flatten[0]
+          URI.parse("http://#{options[:domain]}#{request}")
         rescue
         end
       },
 
-      :http_method => proc { |match, options|
-        match[:request].scan(/^"([A-Z]+)/) rescue nil
-      },
-
       :request_path => proc { |match, options|
-        NCSAParser::Helper.clean_uri(match[:request].split(' ')[1]) rescue nil
+        match[:request].scan(/^"[A-Z]+ ([^?]+)/).flatten[0] rescue nil
       },
 
-      :request_http_version => proc { |match, options|
-        match[:request].scan(/(\d\.\d)"$/) rescue nil
+      :http_method => proc { |match, options|
+        match[:request].scan(/^"([A-Z]+)/).flatten[0] rescue nil
+      },
+
+      :http_version => proc { |match, options|
+        match[:request].scan(/(\d+\.\d+)"$/).flatten[0] rescue nil
       },
 
       :query_string => proc { |match, options|
@@ -49,6 +50,10 @@ module NCSAParser
 
       :browscap => proc { |match, options|
         options[:browscap].match(match[:ua].sub(/^"(.+)"$/, '\1')) if options[:browscap]
+      },
+
+      :ratio => proc { |match, options|
+        match.attributes[:ratio].to_f / 100 rescue nil
       }
     }
 
