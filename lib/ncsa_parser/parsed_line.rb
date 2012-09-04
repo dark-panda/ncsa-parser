@@ -65,7 +65,7 @@ module NCSAParser
       EOF
     end
 
-    attr_reader :attributes
+    attr_reader :attributes, :parsed_attributes
 
     def initialize(attributes, options = {})
       @attributes, @options = attributes, options
@@ -86,7 +86,7 @@ module NCSAParser
 
     def to_hash
       TOKEN_CONVERSIONS.each { |t, v| self[t] }
-      @attributes
+      @attributes.merge(@parsed_attributes)
     end
   end
 end
