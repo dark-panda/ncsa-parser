@@ -2,8 +2,8 @@
 module NCSAParser
   class ParsedLine
     TOKEN_CONVERSIONS = {
-      :datetime_parsed => proc { |match, options|
-        DateTime.strptime(match[:datetime], options[:datetime_format])
+      :datetime => proc { |match, options|
+        DateTime.strptime(match.attributes[:datetime], options[:datetime_format])
       },
 
       :request_uri => proc { |match, options|
