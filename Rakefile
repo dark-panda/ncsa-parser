@@ -7,6 +7,7 @@ gem 'rdoc', '~> 3.12'
 require 'rubygems/package_task'
 require 'rake/testtask'
 require 'rdoc/task'
+require 'bundler/gem_tasks'
 
 if RUBY_VERSION >= '1.9'
   begin
@@ -18,27 +19,13 @@ end
 
 $:.push 'lib'
 
-version = File.read('VERSION') rescue ''
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name         = "ncsa-parser"
-    gem.summary      = "A NCSA log file reader."
-    gem.description  = gem.summary
-    gem.email        = "dark.panda@gmail.com"
-    gem.homepage     = "http://github.com/dark-panda/ncsa-parser"
-    gem.authors      = [ "J Smith" ]
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
-end
+version = NCSAParser::VERSION
 
 desc 'Test NCSA parser library'
 Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/*_tests.rb']
   t.verbose = !!ENV['VERBOSE_TESTS']
+  t.warning = !!ENV['WARNINGS']
 end
 
 desc 'Build docs'
