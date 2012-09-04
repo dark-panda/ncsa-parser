@@ -1,5 +1,5 @@
 
-require 'ncsa_parser/parser'
-require 'ncsa_parser/helper'
-require 'ncsa_parser/parsed_line'
+require 'ncsa-parser/parser'
+require 'ncsa-parser/helper'
+require 'ncsa-parser/parsed_line'
 
