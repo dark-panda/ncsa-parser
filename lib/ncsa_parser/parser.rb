@@ -68,12 +68,9 @@ module NCSAParser
     end
 
     def next_line
-      parsed = self.parse_line(@log.gets)
-      if block_given?
-        yield parsed
-      else
-        parsed
-      end
+      self.parse_line(@log.gets).tap { |parsed|
+        yield parsed if block_given?
+      }
     end
   end
 end
