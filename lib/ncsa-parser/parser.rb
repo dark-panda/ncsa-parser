@@ -10,6 +10,10 @@ module NCSAParser
     end
   end
 
+  # A line parser for a log file. Lines are parsed via Regexps. You can
+  # inject new tokens or override existing ones by modifying the passing along
+  # a +:tokens+ option and adding the keys to the +:pattern+ option
+  # accordingly.
   class Parser
     IP_ADDRESS = '\d+\.\d+\.\d+\.\d+|unknown'
 

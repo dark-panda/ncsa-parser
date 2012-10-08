@@ -1,16 +1,23 @@
 
-== NCSA Parser ==
+= NCSA Parser
 
 Here's a quick little library for reading NCSA-style web server logs. Quick
 usage:
 
-  NCSAParser::Parser.new(File.open('/var/log/httpd/access_log'), %w{
+  NCSAParser.each_line(File.open('/var/log/httpd/access_log'), :pattern => %w{
     host ident username datetime request
     status bytes referer ua
     outstream instream ratio
-  }).each { |b|
+  }) do |b|
     puts b.inspect
-  }
+  end
 
-  ...
+  parser = NCSAParser::Parser.new
+  parsed = parser.parse_line('...')
 
+There are more examples available in the tests.
+
+== License
+
+This gem is licensed under an MIT-style license. See the +MIT-LICENSE+ file for
+details.

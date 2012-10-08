@@ -1,5 +1,17 @@
 
 module NCSAParser
+  # NCSAParser::ParsedLine handles some token conversions and the like on the
+  # fly after a successful line parse. You can add your own token conversions
+  # or override existing ones by passing along a +:token_conversions+ option
+  # that contains converters in the same manner as those found in
+  # NCSAParser::ParsedLine::TOKEN_CONVERSIONS.
+  #
+  # To access a parsed value without any sort of token conversion, use the
+  # +attributes+ method. The +[]+ method will perform the token conversion
+  # on the fly for you.
+  #
+  # For token converters that handle URIs, the Symbol :bad_uri will be returned
+  # if the URI parser fails for whatever reason.
   class ParsedLine
     TOKEN_CONVERSIONS = {
       :datetime => proc { |match, options|
