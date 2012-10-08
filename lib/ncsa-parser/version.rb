@@ -1,5 +1,5 @@
 
 module NCSAParser
-  VERSION = '0.0.1.dev'
+  VERSION = '0.0.1'
 end
 
