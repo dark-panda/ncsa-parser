@@ -170,6 +170,6 @@ class NCSAParserTests < MiniTest::Unit::TestCase
       :host, :ident, :username, :datetime, :request, :status, :bytes,
       :original, :request_uri, :request_path, :http_method,
       :http_version, :query_string
-    ], parsed.to_hash.keys)
+    ].sort_by(&:to_s), parsed.to_hash.keys.sort_by(&:to_s))
   end
 end
