@@ -24,7 +24,7 @@ module NCSAParser
       :bytes => '\d+|-',
       :referer => '".*"',
       :ua => '".*"',
-      :usertrack => "#{IP_ADDRESS}|-",
+      :usertrack => "(?:#{IP_ADDRESS})[^ ]+|-",
       :outstream => '\d+|-',
       :instream => '\d+|-',
       :ratio => '\d+%|-%'
