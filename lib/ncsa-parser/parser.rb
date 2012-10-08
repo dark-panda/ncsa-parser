@@ -96,7 +96,7 @@ module NCSAParser
         @pattern.each_with_index do |k, j|
           match[k.to_sym] = md[j + 1]
         end
-        match[:original] = line
+        match[:original] = line.strip
       else
         raise BadLogLine.new(line, @options[:pattern])
       end
