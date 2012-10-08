@@ -5,8 +5,8 @@ require 'cgi'
 
 module NCSAParser
   class BadLogLine < Exception
-    def initialize(line)
-      super("Bad log line |#{line.strip}|")
+    def initialize(line, pattern)
+      super("Bad log line. Pattern: |#{pattern.join(' ')}| Line: |#{line}|")
     end
   end
 
@@ -55,7 +55,7 @@ module NCSAParser
         end
         match[:original] = line
       else
-        raise BadLogLine.new(line)
+        raise BadLogLine.new(line, @options[:pattern])
       end
       ParsedLine.new(match, @options)
     end
