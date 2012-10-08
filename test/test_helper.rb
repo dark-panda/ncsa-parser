@@ -2,7 +2,6 @@
 require 'rubygems'
 require 'minitest/autorun'
 require 'turn/autorun'
-require 'awesome_print'
 require File.join(File.dirname(__FILE__), %w{ .. lib ncsa-parser })
 
 puts "NCSAParser version #{NCSAParser::VERSION}"
