@@ -11,8 +11,6 @@ module NCSAParser
   end
 
   class Parser
-    include Enumerable
-
     IP_ADDRESS = '\d+\.\d+\.\d+\.\d+|unknown'
 
     TOKENS = {
@@ -48,7 +46,8 @@ module NCSAParser
       @matcher = Regexp.new(@re)
     end
 
-    def parse_line(line, i = 0)
+    # Parses a single line and returns an NCSAParser::ParsedLine object.
+    def parse_line(line)
       match = Hash.new
       if md = @matcher.match(line)
         @pattern.each_with_index do |k, j|
@@ -60,17 +59,6 @@ module NCSAParser
       end
       ParsedLine.new(match, @options)
     end
-
-    def each
-      @log.each_with_index do |l, i|
-        yield self.parse_line(l, i)
-      end
-    end
-
-    def next_line
-      self.parse_line(@log.gets).tap { |parsed|
-        yield parsed if block_given?
-      }
-    end
+    alias :parse :parse_line
   end
 end
