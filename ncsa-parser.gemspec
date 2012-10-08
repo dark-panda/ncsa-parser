@@ -25,4 +25,3 @@ Gem::Specification.new do |s|
   s.add_dependency("minitest")
   s.add_dependency("turn")
 end
-
