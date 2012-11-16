@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/dark-panda/ncsa-parser"
   s.require_paths = ["lib"]
 
-  s.add_dependency("rdoc")
-  s.add_dependency("rake", ["~> 0.9"])
-  s.add_dependency("minitest")
-  s.add_dependency("turn")
+  s.add_development_dependency("rdoc")
+  s.add_development_dependency("rake", ["~> 0.9"])
+  s.add_development_dependency("minitest")
+  s.add_development_dependency("turn")
 end
