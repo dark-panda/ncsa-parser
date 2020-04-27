@@ -21,6 +21,8 @@ module NCSAParser
     end
 
     def each
+      log.rewind
+
       if block_given?
         self.log.each do |l|
           yield self.parser.parse_line(l)
